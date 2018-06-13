@@ -15,12 +15,15 @@ rules.push({
 
 module.exports = {
     entry: './src/index.js',
+    devServer: {
+        index: 'index.html'
+    },
     output: {
         filename: '[name].[hash].js',
         path: path.resolve('dist')
     },
     devtool: 'source-map',
-    module: { rules },
+    module: {rules},
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
@@ -31,8 +34,9 @@ module.exports = {
         }),
         new ExtractTextPlugin('styles.css'),
         new HtmlPlugin({
-            title: 'Loft School sample project',
-            template: 'index.hbs'
+            title: 'Геоотзыв',
+            template: './src/index.hbs',
+            //filename: 'index.html'
         }),
         new CleanWebpackPlugin(['dist'])
     ]
